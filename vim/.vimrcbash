@@ -1,0 +1,51 @@
+" --- GENERAL SETTINGS ---
+filetype plugin indent on  " Enable filetype detection
+syntax enable              " Enable syntax highlighting
+set nocompatible           " Be iMproved, don't mimic ancient vi
+
+" Map Leader to Space
+let mapleader = " "
+
+" --- UI & INDENTATION ---
+set number                 " Show line numbers
+set relativenumber         " Show relative numbers (great for '10j' jumps)
+set tabstop=4              " Tab width 4
+set shiftwidth=4           " Indent width 4
+set expandtab              " Use spaces instead of tabs
+set autoindent             " Auto-indent new lines
+set backspace=indent,eol,start " Fix backspace behavior
+
+" --- MAPPINGS ---
+" Escape mapping
+imap jk <Esc>
+
+" Toggle Search Highlight (Space + h)
+nnoremap <silent> <leader>h :set hlsearch!<CR>
+
+" Toggle Line Numbers (Space + n)
+nnoremap <silent> <leader>n :set number! relativenumber!<CR>
+
+" Better split navigation (Ctrl+h/j/k/l)
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" --- SEARCH ---
+set incsearch       " Search as you type
+set ignorecase      " Ignore case...
+set smartcase       " ...unless capital letter used
+
+" Enable 24-bit true color (Crucial for the deep blue background)
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Try to load dusk, fallback if not found on server
+try
+    colorscheme dusk
+catch
+    " If dusk isn't installed on remote, use default
+    colorscheme default
+endtry
+

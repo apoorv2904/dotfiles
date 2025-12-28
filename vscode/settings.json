@@ -1,0 +1,116 @@
+{ 
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "extensions.experimental.deferredStartupFinishedActivation": true,
+    "terminal.integrated.systemd.shouldUse": true,
+    "window.restoreWindows": "none",
+    "accessibility.openChatEditedFiles": false,
+    "editor.inlineSuggest.allowSuggestOnTriggerCharacters": true,
+    "editor.lightbulb.enabled": "on",
+    "window.title": "${devmate:status}${separator}${activeEditorShort}${separator}${rootName}${separator}${profileName}",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "emmet.showAbbreviationSuggestions": false,
+    "emmet.showExpandedAbbreviation": "never",
+    "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+    // =========================================================
+    //  VIM STRATEGY (The Core)
+    // =========================================================
+    "vim.leader": "<space>",
+    "vim.useSystemClipboard": true, // Sync remote clipboard to Mac
+    "vim.hlsearch": true,
+
+    // Map 'jk' to Escape (Critical for muscle memory)
+    "vim.insertModeKeyBindings": [
+        { "before": ["j", "k"], "after": ["<Esc>"] }
+    ],
+
+    // Visual Mode Indenting (Stay in visual mode after < or >)
+    "vim.visualModeKeyBindings": [
+        { "before": [">"], "commands": ["editor.action.indentLines"] },
+        { "before": ["<"], "commands": ["editor.action.outdentLines"] }
+    ],
+
+    // Vim Key Conflict Resolution
+    "vim.handleKeys": {
+        "<C-a>": false, // Let VS Code Select All
+        "<C-f>": true,  // Vim Page Down
+        "<C-b>": true,  // Vim Page Up
+        "<C-p>": false, // Let VS Code 'Quick Open' win
+        "<C-w>": true   // Vim Split Navigation
+    },
+
+    // =========================================================
+    //  YOUR LEADER MAPPINGS (Merged & Complete)
+    // =========================================================
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // File & Window Management
+        { "before": ["<leader>", "w"], "commands": [":w"] }, // Save
+        { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"] }, // Close Tab
+        { "before": ["<leader>", "e"], "commands": ["workbench.action.toggleSidebarVisibility"] }, // Toggle Sidebar
+        { "before": ["<leader>", "f"], "commands": ["workbench.action.quickOpen"] }, // Find File
+        {
+            "before": ["<leader>", ";"],
+            "commands": ["workbench.action.showCommands"]
+        },
+        // zenmode shortcut
+        { 
+            "before": ["<leader>", "z"], 
+            "commands": ["workbench.action.toggleZenMode"] 
+        },
+        // maps g+p to the previous tab
+        {
+            "before": ["g", "p"],
+            "commands": ["workbench.action.previousEditor"]
+        },
+        // Splits (Vertical/Horizontal)
+        { "before": ["<leader>", "v"], "commands": [":vsp"] },
+        { "before": ["<leader>", "s"], "commands": [":sp"] },
+
+        // Terminal
+        { "before": ["<leader>", "t"], "commands": ["workbench.action.terminal.toggleTerminal"] },
+
+        // Clear Search Highlights (Space + h)
+        { "before": ["<leader>", "h"], "commands": [":nohl"] }
+    ],
+
+    // =========================================================
+    //  UI & VISUALS (The "Zen" Look)
+    // =========================================================
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "block",
+    "workbench.sideBar.location": "left",
+    "workbench.startupEditor": "newUntitledFile",
+
+    // Theme
+    "workbench.colorTheme": "Tokyo Night",
+
+    // =========================================================
+    //  BASH / TERMINAL SPECIFICS
+    // =========================================================
+    "[shellscript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "mkhl.shfmt"
+    },
+    // Use Bash as default terminal on Linux/Mac
+    "terminal.integrated.defaultProfile.linux": "bash",
+
+    // =========================================================
+    //  EXCLUSIONS
+    // =========================================================
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/__pycache__": true,
+        "**/.git": true,
+        "**/.venv": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    },
+    "python.languageServer": "Default",
+    "wasabi.interactiveDevelopment.introMessageNumTimesShown": 1
+}
