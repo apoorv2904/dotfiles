@@ -150,3 +150,17 @@ function setup_mac_fbkeyboard() {
     echo "   - Restart VS Code (Cmd+Q) for the repeat fix to take effect."
     echo "   - You may need to log out/in for global speed changes."
 }
+
+alias rscp='rsync -avh --progress'
+
+# Fix Tilde/Section key swap for mac keyboard
+function fixkeys() {
+    hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064},{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035}]}'
+    echo "Tilde (~) and Section (±) keys swapped."
+}
+
+# Undo the swap
+function unfixkeys() {
+    hidutil property --set '{"UserKeyMapping":[]}'
+    echo "Keyboard mappings reset to default."
+}
